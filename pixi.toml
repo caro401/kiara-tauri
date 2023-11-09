@@ -10,6 +10,7 @@ platforms = ["linux-64", "win-64", "osx-64", "osx-arm64"]
 show-version = "kiara --version"
 backend = "kiara -p extra_pipelines service start"
 export-models = "kiara dev model render typescript --force --output src/lib model_list.txt"
+#clear-context = "kiara context delete"  # doesn't work???
 
 [dependencies]
 "kiara_plugin.onboarding" = ">=0.4.5"

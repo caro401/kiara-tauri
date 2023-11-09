@@ -54,11 +54,16 @@ async fn query_kiara() -> Result<serde_json::Value, String> {
 }
 
 #[tauri::command]
-async fn list_operation_ids() -> Result<serde_json::Value, String> {
+async fn list_operations() -> Result<serde_json::Value, String> {
     let body = json!({
-        "input_types": ["table"]
+        "input_types": ["network_data"]
     });
-    post_to_kiara_api("operations/ids", &body).await
+    post_to_kiara_api("operations", &body).await
+}
+
+#[tauri::command]
+async fn list_network_datas() -> Result<serde_json::Value, String> {
+    get_from_kiara_api("data/type/network_data/values_info").await
 }
 
 #[tauri::command]
@@ -104,14 +109,35 @@ async fn explain_operation(id: String) -> Result<serde_json::Value, String> {
     get_from_kiara_api(&format!("operations/{id}")).await
 }
 
+#[tauri::command]
+async fn extract_largest_component(network_data_id: String) -> Result<serde_json::Value, String> {
+    let body = json!({
+      "operation_id": "network_data.extract_components",
+      "operation_config": {},
+      "inputs": {"network_data": network_data_id}
+    });
+    let components_job = post_to_kiara_api("jobs/queue_job", &body).await?;
+    let components_network_data = &components_job["results"]["network_data"];
+    let filter_body = json!({
+      "operation_id": "network_data_filter.component",
+      "operation_config": {},
+      "inputs": {"value": components_network_data}
+    });
+    let filter_job = post_to_kiara_api("jobs/queue_job", &filter_body).await?;
+    let filtered_network_data = &filter_job["results"]["value"].as_str().unwrap();
+    get_from_kiara_api(&format!("data/value_info/{filtered_network_data}")).await
+}
+
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             greet,
             query_kiara,
-            list_operation_ids,
+            list_operations,
             explain_operation,
-            import_file
+            import_file,
+            list_network_datas,
+            extract_largest_component
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

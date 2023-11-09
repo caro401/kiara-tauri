@@ -4,6 +4,7 @@ help:
 
 # Run the project for local development
 dev:
+    @echo "don't forget to start kiara service - just start-kiara"
     npm run tauri dev
 
 alias setup := install
@@ -22,15 +23,19 @@ build:
 alias fmt := format
 # Run the code formatter
 format:
-    npm run format
     cd src-tauri/ && cargo fmt
+    npm run format
 
 # Run static analysis on the code
 lint:
+    cd src-tauri/ && cargo clippy
     npm run lint
     npm run check
-    cd src-tauri/ && cargo clippy
 
 # Run a kiara server via pixi
 start-kiara:
     pixi run backend
+
+clean-kiara:
+    @echo "go delete wherever kiara stores its application data, bad luck"
+#    pixi run clear-context
