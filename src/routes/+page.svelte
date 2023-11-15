@@ -51,7 +51,7 @@
 <!--</p>-->
 <h2>Here's the network datas you've already loaded</h2>
 
-<pre>{JSON.stringify(data.existing_network_data, null, 2)}</pre>
+<pre>{JSON.stringify(data.operations, null, 2)}</pre>
 <h2>Load some more data?</h2>
 <label for="filepath">Load a file</label>
 <input class="w-full" name="filepath" type="text" bind:value={filepath} />

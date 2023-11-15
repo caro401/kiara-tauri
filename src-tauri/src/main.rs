@@ -1,8 +1,9 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+use pyo3::prelude::*;
+use pyo3::types::IntoPyDict;
 use serde_json::json;
-
 #[tauri::command]
 fn greet(name: String) -> String {
     format!("Hello, {}!", name)
@@ -53,12 +54,25 @@ async fn query_kiara() -> Result<serde_json::Value, String> {
     get_from_kiara_api("modules/type_names").await
 }
 
+fn call_kiara_function<D>(python_code: &str) -> Result<D, String>
+where
+    for<'p> D: FromPyObject<'p>,
+{
+    Ok(Python::with_gil(|py| {
+        let kiara_import = py.import("kiara.api")?;
+        let kiara_api = kiara_import.getattr("KiaraAPI")?;
+        let kiara = kiara_api.call_method0("instance")?;
+        let locals = [("kiara", kiara)].into_py_dict(py);
+        py.run(python_code, None, Some(&locals))?;
+        let response = locals.get_item("response").unwrap().unwrap();
+        response.extract()
+    })
+    .unwrap())
+
+}
 #[tauri::command]
-async fn list_operations() -> Result<serde_json::Value, String> {
-    let body = json!({
-        "input_types": ["network_data"]
-    });
-    post_to_kiara_api("operations", &body).await
+async fn list_operations() -> Result<Vec<String>, String> {
+    call_kiara_function("response = kiara.list_operation_ids()")
 }
 
 #[tauri::command]
@@ -105,8 +119,10 @@ async fn import_file(filepath: String) -> Result<serde_json::Value, String> {
 }
 
 #[tauri::command]
-async fn explain_operation(id: String) -> Result<serde_json::Value, String> {
-    get_from_kiara_api(&format!("operations/{id}")).await
+async fn explain_operation(id: String) -> Result<String, String> {
+    call_kiara_function(&format!(
+        "kiara.retrieve_operation_info('{id}').create_html()"
+    ))
 }
 
 #[tauri::command]
