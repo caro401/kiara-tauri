@@ -35,6 +35,10 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@tauri-apps/api": "^1.5.1"
+		"@tailwindcss/forms": "^0.5.7",
+		"@tauri-apps/api": "^1.5.1",
+		"gridjs": "^6.0.6",
+		"gridjs-svelte": "^2.1.1",
+		"svelte-french-toast": "^1.2.0"
 	}
 }

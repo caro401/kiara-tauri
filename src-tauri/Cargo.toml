@@ -19,7 +19,7 @@ serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
 tauri = { version = "1.5.2", features = [] }
 reqwest = { version = "0.11.22", features = ["json", "rustls-tls-webpki-roots"], default-features = false }
-pyo3 = {version = "0.20.0", features = ["auto-initialize"] }
+pyo3 = {version = "0.20.0", features = ["auto-initialize", "serde"] }
 
 [features]
 # this feature is used for production builds or when `devPath` points to the filesystem and the built-in dev server is disabled.

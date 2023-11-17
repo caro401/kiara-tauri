@@ -4,7 +4,7 @@ help:
 
 # Run the project for local development
 dev:
-    @echo "don't forget to start kiara service - just start-kiara"
+    @export PYO3_PYTHON=/Users/caro/.pyenv/versions/3.11.6/bin/python
     npm run tauri dev
 
 alias setup := install
@@ -18,6 +18,7 @@ update-deps:
 
 # Build the project for production deployment
 build:
+    @export PYO3_PYTHON=/Users/caro/.pyenv/versions/3.11.6/bin/python
     npm run tauri build
 
 alias fmt := format
@@ -31,11 +32,3 @@ lint:
     cd src-tauri/ && cargo clippy
     npm run lint
     npm run check
-
-# Run a kiara server via pixi
-start-kiara:
-    pixi run backend
-
-clean-kiara:
-    @echo "go delete wherever kiara stores its application data, bad luck"
-#    pixi run clear-context

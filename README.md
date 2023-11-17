@@ -10,6 +10,8 @@ Set up a python environment for pyo3 to use. This needs python-devel or install 
 
 Instruct PyO3 to use the correct Python version with an env variable: `export PYO3_PYTHON=/Users/XXX/.pyenv/versions/3.11.6/bin/python` or whatever for your OS
 
+Sometimes the linker gets sad. When it does that, `cd src-tauri && cargo clean` might fix it.
+
 ### always
 
 - have a [node](https://nodejs.org/en) environment and rust installed (via [rustup](https://rustup.rs/))
