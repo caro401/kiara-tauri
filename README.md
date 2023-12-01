@@ -20,4 +20,16 @@ Sometimes the linker gets sad. When it does that, `cd src-tauri && cargo clean` 
 
 ## building
 
+- set the `PYO3_PYTHON` env var as appropriate
 - `npm run tauri build`
+
+## Running (for now)
+
+use [kiara-bootstrap](https://github.com/caro401/kiara-bootstrap)
+
+## TODO
+
+- [ ] SOM ERROR HANDLING
+- [ ] mock up how the merge edges thing works
+- [x] can tauri expose devtools in release build
+  - sort of - https://tauri.app/v1/guides/debugging/application/#using-the-inspector-in-production but we probably don't want to ship with it

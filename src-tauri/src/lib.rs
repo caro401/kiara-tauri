@@ -37,6 +37,7 @@ pub fn main() {
             list_network_datas,
             create_network_from_edges_table,
             get_network_nodes_table,
+            get_network_edges_table,
             get_network_metadata
         ])
         .run(tauri::generate_context!())

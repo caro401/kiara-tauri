@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Grid from 'gridjs-svelte';
+	type Column = { id: string; name: string };
 
 	export let data: string[][];
-	$: console.log(data);
-	export let columns: string[];
+	export let columns: string[] | Column[];
 </script>
 
 <Grid

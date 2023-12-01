@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type {NetworkMetadata} from "$lib"
+	import type { NetworkMetadata } from '$lib';
 	export let networkMetadata: NetworkMetadata;
 
 	const direction = ['directed', 'undirected'] as const;

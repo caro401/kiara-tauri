@@ -1,36 +1,299 @@
-@import 'https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css';
-
 /* Write your global styles here, in PostCSS syntax */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-input {
-	@apply border-2 border-purple-500;
+input,
+input[type='text'],
+input[type='search'],
+input[type='radio'],
+input[type='checkbox'],
+select {
+	@apply box-content border-2 border-purple-500 accent-purple-500 checked:bg-purple-500 focus:ring-purple-500 focus:border-purple-500;
+}
+
+input[type='text'],
+input[type='search'] {
+	@apply rounded-md;
 }
 
 h1,
 h2 {
 	@apply font-bold text-purple-500 my-4;
 }
+
 h1 {
 	@apply text-5xl;
 }
+
 h2 {
 	@apply text-3xl;
 }
 
 button,
 a.button {
-	@apply bg-purple-300 p-2 my-4 hover:bg-purple-200 font-semibold inline-flex text-slate-900 hover:text-slate-900 no-underline;
+	@apply bg-purple-300 py-3 px-4 my-4 hover:bg-purple-200 font-semibold inline-flex text-slate-900 hover:text-slate-900 no-underline rounded-md;
 }
 
 a {
 	@apply underline text-purple-500 hover:text-purple-600 focus:text-purple-600;
 }
+
 .error {
 	@apply text-red-600 text-sm font-bold;
 }
+
 .error::before {
 	content: '❗';
+}
+
+/*@import 'https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css';*/
+.gridjs-head button,
+.gridjs-footer button {
+	@apply cursor-pointer bg-transparent p-0 m-0 border-none outline-none;
+}
+
+.gridjs-temp {
+	@apply relative;
+}
+
+.gridjs-head {
+	@apply w-full mb-2 px-3 py-2;
+}
+
+.gridjs-head::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.gridjs-container {
+	@apply overflow-hidden inline-block p-[2px] text-slate-900 relative z-0;
+}
+
+.gridjs-footer {
+	@apply block relative w-full z-10 px-3 py-2 border-t border-slate-200 bg-white rounded-b-lg;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.26);
+}
+
+.gridjs-footer:empty,
+.gridjs-head:empty {
+	@apply p-0 border-none;
+}
+
+.gridjs-pagination {
+	@apply text-slate-700;
+}
+
+.gridjs-pagination::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.gridjs-pagination .gridjs-summary {
+	@apply float-left mt-1;
+}
+
+.gridjs-pagination .gridjs-pages {
+	@apply float-right;
+}
+
+.gridjs-pagination .gridjs-pages button {
+	@apply py-1.5 px-3 bg-white outline-none select-none;
+	border: 1px solid #d2d6dc;
+	border-right: none;
+}
+
+.gridjs-pagination .gridjs-pages button:focus {
+	box-shadow: 0 0 0 2px rgba(149, 189, 243, 0.5);
+	position: relative;
+	margin-right: -1px;
+	border-right: 1px solid #d2d6dc;
+}
+
+.gridjs-pagination .gridjs-pages button:hover {
+	@apply bg-slate-200 outline-none;
+}
+
+.gridjs-pagination .gridjs-pages button:disabled,
+.gridjs-pagination .gridjs-pages button[disabled],
+.gridjs-pagination .gridjs-pages button:hover:disabled {
+	@apply cursor-default bg-white text-slate-500;
+}
+
+.gridjs-pagination .gridjs-pages button.gridjs-spread {
+	@apply cursor-default;
+}
+
+.gridjs-pagination .gridjs-pages button.gridjs-currentPage {
+	@apply font-bold bg-slate-100;
+}
+
+.gridjs-pagination .gridjs-pages button:last-child {
+	@apply rounded-r-md;
+	border-right: 1px solid #e2e8f0;
+}
+
+.gridjs-pagination .gridjs-pages button:first-child {
+	@apply rounded-l-md;
+}
+
+.gridjs-pagination .gridjs-pages button:last-child:focus {
+	@apply mr-0;
+}
+
+button.gridjs-sort {
+	@apply float-right h-6 w-3 bg-transparent bg-no-repeat bg-center cursor-pointer p-0 m-0 bg-contain border-none;
+}
+
+button.gridjs-sort-neutral {
+	opacity: 0.3;
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSI0MDEuOTk4cHgiIGhlaWdodD0iNDAxLjk5OHB4IiB2aWV3Qm94PSIwIDAgNDAxLjk5OCA0MDEuOTk4IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0MDEuOTk4IDQwMS45OTg7IgoJIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik03My4wOTIsMTY0LjQ1MmgyNTUuODEzYzQuOTQ5LDAsOS4yMzMtMS44MDcsMTIuODQ4LTUuNDI0YzMuNjEzLTMuNjE2LDUuNDI3LTcuODk4LDUuNDI3LTEyLjg0NwoJCQljMC00Ljk0OS0xLjgxMy05LjIyOS01LjQyNy0xMi44NUwyMTMuODQ2LDUuNDI0QzIxMC4yMzIsMS44MTIsMjA1Ljk1MSwwLDIwMC45OTksMHMtOS4yMzMsMS44MTItMTIuODUsNS40MjRMNjAuMjQyLDEzMy4zMzEKCQkJYy0zLjYxNywzLjYxNy01LjQyNCw3LjkwMS01LjQyNCwxMi44NWMwLDQuOTQ4LDEuODA3LDkuMjMxLDUuNDI0LDEyLjg0N0M2My44NjMsMTYyLjY0NSw2OC4xNDQsMTY0LjQ1Miw3My4wOTIsMTY0LjQ1MnoiLz4KCQk8cGF0aCBkPSJNMzI4LjkwNSwyMzcuNTQ5SDczLjA5MmMtNC45NTIsMC05LjIzMywxLjgwOC0xMi44NSw1LjQyMWMtMy42MTcsMy42MTctNS40MjQsNy44OTgtNS40MjQsMTIuODQ3CgkJCWMwLDQuOTQ5LDEuODA3LDkuMjMzLDUuNDI0LDEyLjg0OEwxODguMTQ5LDM5Ni41N2MzLjYyMSwzLjYxNyw3LjkwMiw1LjQyOCwxMi44NSw1LjQyOHM5LjIzMy0xLjgxMSwxMi44NDctNS40MjhsMTI3LjkwNy0xMjcuOTA2CgkJCWMzLjYxMy0zLjYxNCw1LjQyNy03Ljg5OCw1LjQyNy0xMi44NDhjMC00Ljk0OC0xLjgxMy05LjIyOS01LjQyNy0xMi44NDdDMzM4LjEzOSwyMzkuMzUzLDMzMy44NTQsMjM3LjU0OSwzMjguOTA1LDIzNy41NDl6Ii8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+');
+	background-position-y: center;
+}
+
+button.gridjs-sort-asc {
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSIyOTIuMzYycHgiIGhlaWdodD0iMjkyLjM2MXB4IiB2aWV3Qm94PSIwIDAgMjkyLjM2MiAyOTIuMzYxIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyOTIuMzYyIDI5Mi4zNjE7IgoJIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxwYXRoIGQ9Ik0yODYuOTM1LDE5Ny4yODdMMTU5LjAyOCw2OS4zODFjLTMuNjEzLTMuNjE3LTcuODk1LTUuNDI0LTEyLjg0Ny01LjQyNHMtOS4yMzMsMS44MDctMTIuODUsNS40MjRMNS40MjQsMTk3LjI4NwoJCUMxLjgwNywyMDAuOTA0LDAsMjA1LjE4NiwwLDIxMC4xMzRzMS44MDcsOS4yMzMsNS40MjQsMTIuODQ3YzMuNjIxLDMuNjE3LDcuOTAyLDUuNDI1LDEyLjg1LDUuNDI1aDI1NS44MTMKCQljNC45NDksMCw5LjIzMy0xLjgwOCwxMi44NDgtNS40MjVjMy42MTMtMy42MTMsNS40MjctNy44OTgsNS40MjctMTIuODQ3UzI5MC41NDgsMjAwLjkwNCwyODYuOTM1LDE5Ny4yODd6Ii8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+');
+	background-position-y: 35%;
+	background-size: 10px;
+}
+
+button.gridjs-sort-desc {
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHdpZHRoPSIyOTIuMzYycHgiIGhlaWdodD0iMjkyLjM2MnB4IiB2aWV3Qm94PSIwIDAgMjkyLjM2MiAyOTIuMzYyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyOTIuMzYyIDI5Mi4zNjI7IgoJIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxwYXRoIGQ9Ik0yODYuOTM1LDY5LjM3N2MtMy42MTQtMy42MTctNy44OTgtNS40MjQtMTIuODQ4LTUuNDI0SDE4LjI3NGMtNC45NTIsMC05LjIzMywxLjgwNy0xMi44NSw1LjQyNAoJCUMxLjgwNyw3Mi45OTgsMCw3Ny4yNzksMCw4Mi4yMjhjMCw0Ljk0OCwxLjgwNyw5LjIyOSw1LjQyNCwxMi44NDdsMTI3LjkwNywxMjcuOTA3YzMuNjIxLDMuNjE3LDcuOTAyLDUuNDI4LDEyLjg1LDUuNDI4CgkJczkuMjMzLTEuODExLDEyLjg0Ny01LjQyOEwyODYuOTM1LDk1LjA3NGMzLjYxMy0zLjYxNyw1LjQyNy03Ljg5OCw1LjQyNy0xMi44NDdDMjkyLjM2Miw3Ny4yNzksMjkwLjU0OCw3Mi45OTgsMjg2LjkzNSw2OS4zNzd6Ii8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+');
+	background-position-y: 65%;
+	background-size: 10px;
+}
+
+button.gridjs-sort:focus {
+	@apply outline-none;
+}
+
+table.gridjs-table {
+	@apply w-full max-w-full border-collapse text-left table p-0 m-0 overflow-auto table-fixed;
+}
+
+td.gridjs-td {
+	@apply px-3 py-2 border border-slate-200 box-content;
+}
+
+td.gridjs-td:first-child,
+th.gridjs-th:first-child {
+	@apply border-l-0;
+}
+
+td.gridjs-td:last-child,
+th.gridjs-th:last-child {
+	@apply border-r-0;
+}
+
+td.gridjs-message {
+	@apply text-center;
+}
+
+th.gridjs-th {
+	@apply relative text-slate-800 bg-purple-50 font-bold whitespace-nowrap px-3 py-2 select-none box-border outline-0 border border-slate-200 border-t-0 align-middle;
+}
+
+th.gridjs-th .gridjs-th-content {
+	@apply text-ellipsis overflow-hidden w-full float-left;
+}
+
+th.gridjs-th-sort {
+	@apply cursor-pointer hover:bg-purple-100 focus:bg-purple-100;
+}
+
+th.gridjs-th-sort .gridjs-th-content {
+	width: calc(100% - 15px);
+}
+
+th.gridjs-th-fixed {
+	position: sticky;
+	box-shadow: 0 1px 0 0 #e2e8f0;
+}
+
+@supports (-moz-appearance: none) {
+	th.gridjs-th-fixed {
+		box-shadow: 0 0 0 1px #e2e8f0;
+	}
+}
+
+.gridjs-tr {
+	@apply border-none;
+}
+
+.gridjs-tr-selected td {
+	@apply bg-slate-100;
+}
+
+.gridjs-tr:last-child td {
+	@apply border-b-0;
+}
+
+.gridjs *,
+.gridjs :after,
+.gridjs :before {
+	@apply box-border text-base text-slate-900;
+}
+
+.gridjs-wrapper {
+	@apply relative z-0 overflow-auto w-full antialiased shadow-sm rounded-t-md block border-t-[1px] border-slate-200;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.26);
+}
+
+.gridjs-wrapper:nth-last-of-type(2) {
+	@apply rounded-md border-b-[1px];
+}
+
+.gridjs-search {
+	@apply float-left;
+}
+
+.gridjs-search-input {
+	@apply w-64 -ml-3;
+}
+
+.gridjs-loading-bar {
+	@apply z-20 absolute left-0 right-0 top-0 bottom-0 bg-white opacity-50;
+}
+
+.gridjs-loading-bar::after {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	transform: translateX(-100%);
+	background-image: linear-gradient(
+		90deg,
+		rgba(204, 204, 204, 0) 0,
+		rgba(204, 204, 204, 0.2) 20%,
+		rgba(204, 204, 204, 0.5) 60%,
+		rgba(204, 204, 204, 0)
+	);
+	animation: shimmer 2s infinite;
+	content: '';
+}
+
+@keyframes shimmer {
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+.gridjs-td .gridjs-checkbox {
+	@apply block m-auto cursor-pointer;
+}
+
+.gridjs-resizable {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: 5px;
+}
+
+.gridjs-resizable:hover {
+	cursor: ew-resize;
+	background-color: #9bc2f7;
 }

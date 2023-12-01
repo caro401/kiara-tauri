@@ -12,8 +12,7 @@
 	let error: string | undefined;
 
 	async function load_context() {
-		const response = await invoke('load_context', { contextName: selected });
-		console.log(response);
+		await invoke('load_context', { contextName: selected });
 		toast.success(`Loaded project ${selected}`);
 		await invalidateAll();
 		goto('/');
@@ -25,8 +24,7 @@
 				"That name contains characters that aren't supported, please only use letters, numbers, - or _";
 			return;
 		}
-		const response = await invoke('load_context', { contextName: newName });
-		console.log(response);
+		await invoke('load_context', { contextName: newName });
 		toast.success(`Created project ${selected}`);
 		error = undefined;
 		await invalidateAll();

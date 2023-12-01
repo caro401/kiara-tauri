@@ -10,7 +10,6 @@
 	async function load_file() {
 		loading = true;
 		loadFileResponse = await invoke('import_file', { filepath: selectedFileName });
-		console.log(loadFileResponse);
 		loading = false;
 	}
 

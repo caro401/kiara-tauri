@@ -17,7 +17,19 @@ pub async fn get_network_nodes_table(network_id: String) -> Result<String, Strin
         "
 import json
 network = kiara.get_value('{network_id}').data
-edges_table = network.get_table('nodes')
+nodes_table = network.get_table('nodes')
+nodes_table_data = nodes_table.arrow_table.to_pylist()
+response = json.dumps(nodes_table_data)"
+    ))
+}
+
+#[tauri::command]
+pub async fn get_network_edges_table(network_id: String) -> Result<String, String> {
+    call_kiara_function(&format!(
+        "
+import json
+network = kiara.get_value('{network_id}').data
+edges_table = network.get_table('edges')
 edges_table_data = edges_table.arrow_table.to_pylist()
 response = json.dumps(edges_table_data)"
     ))

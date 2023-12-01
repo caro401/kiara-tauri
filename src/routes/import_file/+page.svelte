@@ -21,7 +21,7 @@
 	$: edgesTableId = loadFileResponse ? loadFileResponse.tableId : undefined;
 	let error: string | undefined = undefined;
 
-	function validateNewAlias(a: string) : boolean  {
+	function validateNewAlias(a: string): boolean {
 		if (!validateAlias(a)) {
 			error = "Name can only contain letters, numbers, - or _, and can't be empty";
 			return false;
