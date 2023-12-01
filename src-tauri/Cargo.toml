@@ -17,7 +17,7 @@ tauri-build = { version = "1.5.0", features = [] }
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.5.2", features = [] }
+tauri = { version = "1.5.2", features = [ "dialog-open", "dialog-save"] }
 reqwest = { version = "0.11.22", features = ["json", "rustls-tls-webpki-roots"], default-features = false }
 pyo3 = {version = "0.20.0", features = ["auto-initialize", "serde"] }
 

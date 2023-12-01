@@ -6,7 +6,7 @@
 </script>
 
 <h1>Network {data.network_alias}</h1>
-<NetworkMetadata networkMetadata={JSON.parse(data.metadata)} networkId={data.networkId} />
+<NetworkMetadata networkMetadata={data.metadata} networkId={data.networkId} />
 <h2>Nodes</h2>
 <Grid
 	search={true}
@@ -16,5 +16,5 @@
 	]}
 	sort={true}
 	pagination={{ limit: 50 }}
-	data={JSON.parse(data.nodes)}
+	data={data.nodes}
 />

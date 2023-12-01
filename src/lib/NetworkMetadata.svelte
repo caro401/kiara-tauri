@@ -1,35 +1,16 @@
 <script lang="ts">
-	export let networkMetadata;
-	//     {
-	//   "number_of_nodes": 1926,
-	//   "properties_by_graph_type": {
-	//     "directed": {
-	//       "number_of_edges": 2942,
-	//       "parallel_edges": 0
-	//     },
-	//     "directed_multi": {
-	//       "number_of_edges": 20029,
-	//       "parallel_edges": 1444
-	//     },
-	//     "undirected": {
-	//       "number_of_edges": 2332,
-	//       "parallel_edges": 0
-	//     },
-	//     "undirected_multi": {
-	//       "number_of_edges": 20029,
-	//       "parallel_edges": 1235
-	//     }
-	//   },
-	//   "number_of_self_loops": 92
-	// }
-	const direction = ['directed', 'undirected'];
+	import type {NetworkMetadata} from "$lib"
+	export let networkMetadata: NetworkMetadata;
+
+	const direction = ['directed', 'undirected'] as const;
 	const multi = [
 		{ value: '_multi', label: 'multi' },
 		{ value: '', label: 'not multi???' }
-	];
+	] as const;
+
 	let selected_multi = multi[0].value;
 	let selected_direction = direction[0];
-	$: key = `${selected_direction}${selected_multi}`;
+	$: key = `${selected_direction}${selected_multi}` as const;
 	export let networkId: string;
 </script>
 

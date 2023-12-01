@@ -4,8 +4,7 @@ help:
 
 # Run the project for local development
 dev:
-    @export PYO3_PYTHON=/Users/caro/.pyenv/versions/3.11.6/bin/python
-    npm run tauri dev
+   env PYO3_PYTHON=$HOME/.kiara-app/python/bin/python npm run tauri dev
 
 alias setup := install
 # Install all project dependencies
@@ -18,8 +17,7 @@ update-deps:
 
 # Build the project for production deployment
 build:
-    @export PYO3_PYTHON=/Users/caro/.pyenv/versions/3.11.6/bin/python
-    npm run tauri build
+    env PYO3_PYTHON=$HOME/.kiara-app/python/bin/python npm run tauri build
 
 alias fmt := format
 # Run the code formatter

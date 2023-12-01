@@ -20,6 +20,17 @@ h2 {
 	@apply text-3xl;
 }
 
-button {
-	@apply bg-purple-300 p-2 my-4 hover:bg-purple-200 font-semibold inline-flex;
+button,
+a.button {
+	@apply bg-purple-300 p-2 my-4 hover:bg-purple-200 font-semibold inline-flex text-slate-900 hover:text-slate-900 no-underline;
+}
+
+a {
+	@apply underline text-purple-500 hover:text-purple-600 focus:text-purple-600;
+}
+.error {
+	@apply text-red-600 text-sm font-bold;
+}
+.error::before {
+	content: '❗';
 }
